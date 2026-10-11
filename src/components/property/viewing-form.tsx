@@ -2,6 +2,7 @@
 
 import { CalendarCheck } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { useState } from "react";
 import { DateField, Field, TextArea } from "@/components/forms/fields";
 import { rules, useEnquiry } from "@/components/forms/use-enquiry";
@@ -94,7 +95,13 @@ export function ViewingForm({ property: p }: { property: Property }) {
             <button type="submit" disabled={status === "sending"} className={button({ size: "lg", className: "w-full" })}>
               {status === "sending" ? "Sending request…" : "Request viewing"}
             </button>
-            <p className="text-center text-xs text-stone">Free, and you won&apos;t be asked for payment.</p>
+            <p className="text-center text-xs text-stone">
+              Free, and you won&apos;t be asked for payment. See how we use your details in our{" "}
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-ink">
+                privacy policy
+              </Link>
+              .
+            </p>
           </motion.form>
         )}
       </AnimatePresence>

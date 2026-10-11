@@ -2,6 +2,7 @@
 
 import { CheckCircle2 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import Link from "next/link";
 import { Field, SelectField, TextArea } from "@/components/forms/fields";
 import { rules, useEnquiry } from "@/components/forms/use-enquiry";
 import { button } from "@/components/ui/pill-button";
@@ -47,6 +48,13 @@ export function ContactForm() {
             <button type="submit" disabled={status === "sending"} className={button({ size: "lg" })}>
               {status === "sending" ? "Sending…" : "Send message"}
             </button>
+            <p className="mt-3 text-xs text-stone">
+              We use your details only to answer this request. See our{" "}
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-ink">
+                privacy policy
+              </Link>
+              .
+            </p>
           </div>
         </motion.form>
       )}

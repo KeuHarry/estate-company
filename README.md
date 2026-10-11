@@ -55,6 +55,7 @@ The architecture is generated in code from each listing's `model` in `src/data/p
 ## Placeholders to replace before launch
 
 - **Listings, people, quotes and office addresses are fictional.** Rents are shown in euros everywhere so that the filters compare like with like.
+- **The privacy policy and terms of service** (`/privacy` and `/terms`) are plain-English drafts for a fictional Portuguese company. Their text lives in `src/data/legal.ts`. Have a lawyer review them for each country you operate in, and replace the company name, address and emails.
 - **Forms are front-end only.** `src/app/api/enquiry/route.ts` (viewing, owner and contact) and `src/app/api/subscribe/route.ts` validate the input, log it and return success. Connect them to email or a CRM.
 - **`site.url`, email and phone** are in `src/lib/utils.ts`.
 - **Photography** is from Unsplash (free licence), self-hosted in `public/images/photos`.
