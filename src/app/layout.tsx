@@ -7,7 +7,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "Arise — Architect-designed homes to rent", template: "%s — Arise" },
+  title: { default: "Arise - Architect-designed homes to rent", template: "%s - Arise" },
   description: site.tagline,
   openGraph: { siteName: "Arise", type: "website", locale: "en_GB" },
   twitter: { card: "summary_large_image" },
