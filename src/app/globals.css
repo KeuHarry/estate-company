@@ -1,0 +1,283 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/*
+ * Arise — "first light".
+ * Sky blue and plaster white by day; a warm dusk glow is the only accent, used sparingly.
+ * Black is reserved for primary actions, as on a printed architectural brochure.
+ */
+@theme {
+  --color-paper: #ffffff;
+  --color-sky: #cfe4f3;
+  --color-sky-soft: #eaf3fa;
+  --color-sky-deep: #8fb7d6;
+  --color-mist: #f2f4f7;
+  --color-line: #e2e6eb;
+  --color-line-strong: #c9d0d8;
+  --color-ink: #121418;
+  --color-stone: #5c636d;
+  --color-pebble: #8a919b;
+  --color-dusk: #e59b55;
+  --color-dusk-ink: #9a5413;
+  --color-dusk-tint: #fbefe3;
+  --color-night: #1b2433;
+
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.55;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
+  --text-lg: 1.25rem;
+  --text-lg--line-height: 1.55;
+  --text-xl: 1.5rem;
+  --text-xl--line-height: 1.3;
+  --text-2xl: 2rem;
+  --text-2xl--line-height: 1.15;
+  --text-3xl: 2.5rem;
+  --text-3xl--line-height: 1.08;
+  --text-4xl: 3.25rem;
+  --text-4xl--line-height: 1.02;
+  --text-5xl: 4rem;
+  --text-5xl--line-height: 0.98;
+  --text-6xl: 5.25rem;
+  --text-6xl--line-height: 0.94;
+
+  --tracking-display: -0.045em;
+  --tracking-heading: -0.03em;
+
+  --radius-pill: 999px;
+  --radius-photo: 1.75rem;
+  --radius-panel: 1.25rem;
+
+  --shadow-float: 0 1px 2px rgb(18 20 24 / 0.05), 0 18px 40px -18px rgb(30 60 90 / 0.28);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  html {
+    background: var(--color-paper);
+    scroll-padding-top: 6rem;
+    /* Keep the scrollbar's space reserved, so locking scroll (mobile menu) never shifts layout. */
+    scrollbar-gutter: stable;
+  }
+
+  /*
+   * Radix (shadcn Select) locks page scroll while a dropdown is open by hiding the body's
+   * scrollbar and adding a matching right margin. Fixed elements like the header don't get that
+   * margin, so the page visibly jumped. Keep the scrollbar instead: Radix still blocks wheel and
+   * touch scrolling outside the open panel, so the page stays put without any layout shift.
+   */
+  html body[data-scroll-locked] {
+    overflow: visible !important;
+    margin-right: 0 !important;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    -webkit-tap-highlight-color: transparent;
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-sky);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  /* 16px minimum stops iOS from zooming into focused inputs. */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+@layer components {
+  .display {
+    font-weight: 600;
+    letter-spacing: var(--tracking-display);
+  }
+
+  .heading {
+    font-weight: 600;
+    letter-spacing: var(--tracking-heading);
+  }
+
+  .container-x {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: max(1rem, env(safe-area-inset-left));
+  }
+  @media (min-width: 640px) {
+    .container-x {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Pressable feedback shared by buttons and pill controls. */
+  .press {
+    transition:
+      transform 160ms var(--ease-out),
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Hero entrance, in CSS so it plays from the server-rendered HTML without waiting for JS.
+   The photo is visible from the first frame and only settles; nothing starts invisible except
+   the headline lines, which slide up from behind their own mask. */
+@keyframes hero-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+@keyframes hero-settle {
+  from {
+    transform: translateY(28px) scale(1.04);
+  }
+}
+.hero-rise {
+  animation: hero-rise 900ms var(--ease-out) both;
+}
+.hero-fade {
+  animation: hero-fade 600ms var(--ease-out) both;
+}
+.hero-settle {
+  transform-origin: 50% 100%;
+  animation: hero-settle 1400ms var(--ease-out) both;
+}
+
+/* The photo's sky dissolves into the page sky. On wide screens the photo is narrower than the
+   viewport (so the house isn't oversized), and its sides dissolve too. Two nested elements carry
+   one mask each, which avoids relying on mask-composite. */
+.hero-house-mask {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 22%);
+}
+@media (min-aspect-ratio: 3/2) and (min-width: 1100px) {
+  .hero-house-sides {
+    mask-image: linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+/* shadcn/ui tokens, mapped onto the Arise palette (light only). */
+:root {
+  --radius: 1rem;
+  --background: #ffffff;
+  --foreground: #121418;
+  --card: #ffffff;
+  --card-foreground: #121418;
+  --popover: #ffffff;
+  --popover-foreground: #121418;
+  --primary: #000000;
+  --primary-foreground: #ffffff;
+  --secondary: #f2f4f7;
+  --secondary-foreground: #121418;
+  --muted: #f2f4f7;
+  --muted-foreground: #5c636d;
+  --accent: #eaf3fa;
+  --accent-foreground: #121418;
+  --destructive: #9a5413;
+  --border: #e2e6eb;
+  --input: #e2e6eb;
+  --ring: #121418;
+}
