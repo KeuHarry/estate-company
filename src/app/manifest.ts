@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Arise — Homes to rent",
+    name: "Arise - Homes to rent",
     short_name: "Arise",
     start_url: "/",
     display: "standalone",
