@@ -3,7 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { chromium } from "@playwright/test";
 
 const base = process.env.BASE_URL ?? "http://localhost:3500";
-const paths = ["/", "/rentals", "/rentals?city=Cape%20Town&furnished=1", "/rentals/casa-alba", "/rentals/linden-court", "/owners", "/about", "/contact", "/missing-page"];
+const paths = ["/", "/rentals", "/rentals?city=Cape%20Town&furnished=1", "/rentals/casa-alba", "/rentals/linden-court", "/owners", "/about", "/contact", "/privacy", "/terms", "/missing-page"];
 
 // The 3D scenes need a real GPU to render at a usable speed; Chromium falls back to
 // software rendering by itself where there is none.

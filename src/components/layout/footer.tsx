@@ -12,7 +12,13 @@ export function Footer() {
           <div>
             <LogoMark className="size-10 text-white" />
             <p className="heading mt-6 max-w-sm text-2xl">New homes, the week they&apos;re listed.</p>
-            <p className="mt-3 max-w-sm text-sm text-white/65">One email on Fridays. No other mail, and you can leave with one click.</p>
+            <p className="mt-3 max-w-sm text-sm text-white/65">
+              One email on Fridays. No other mail, and you can leave with one click. See our{" "}
+              <Link href="/privacy" className="underline decoration-white/30 underline-offset-2 hover:text-white">
+                privacy policy
+              </Link>
+              .
+            </p>
             <Newsletter tone="dark" className="mt-6" />
           </div>
           <nav aria-label="Rentals by city">
@@ -45,7 +51,15 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-16 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-white/55 sm:flex-row sm:justify-between">
-          <p>© 2026 Arise Homes. Listings shown are examples.</p>
+          <div className="flex flex-wrap gap-x-6 gap-y-2">
+            <p>© 2026 Arise Homes. Listings shown are examples.</p>
+            <Link href="/privacy" className="hover:text-white">
+              Privacy policy
+            </Link>
+            <Link href="/terms" className="hover:text-white">
+              Terms of service
+            </Link>
+          </div>
           <p>
             Photography from{" "}
             <a href="https://unsplash.com" className="underline decoration-white/30 underline-offset-4 hover:text-white">
